@@ -6,4 +6,9 @@
     <Project Path="src/SqlDataManager.Domain/SqlDataManager.Domain.csproj" />
     <Project Path="src/SqlDataManager.Infrastructure/SqlDataManager.Infrastructure.csproj" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/SqlDataManager.ArchitectureTests/SqlDataManager.ArchitectureTests.csproj" />
+    <Project Path="tests/SqlDataManager.IntegrationTests/SqlDataManager.IntegrationTests.csproj" />
+    <Project Path="tests/SqlDataManager.UnitTests/SqlDataManager.UnitTests.csproj" />
+  </Folder>
 </Solution>
