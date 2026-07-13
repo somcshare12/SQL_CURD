@@ -1,0 +1,51 @@
+# Development/demo compose: SQL Server + the SQL Data Manager host.
+# Usage (from the SqlDataManager/ directory):
+#   docker compose -f docker/docker-compose.yml up --build
+#
+# Production note: never bake database passwords into images. Here the SA
+# password is provided at runtime via an environment variable for the demo.
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "${MSSQL_SA_PASSWORD:-Str0ng_Passw0rd!}"
+      MSSQL_PID: "Developer"
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql-data:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P \"$$MSSQL_SA_PASSWORD\" -C -Q 'SELECT 1' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Production"
+      Modules__SqlDataManager__Connection__Server: "sqlserver,1433"
+      Modules__SqlDataManager__Connection__Database: "SqlDataManagerDemo"
+      Modules__SqlDataManager__Connection__AuthenticationType: "SqlPassword"
+      Modules__SqlDataManager__Connection__Username: "sa"
+      Modules__SqlDataManager__Connection__Password: "${MSSQL_SA_PASSWORD:-Str0ng_Passw0rd!}"
+      Modules__SqlDataManager__Connection__Encrypt: "true"
+      Modules__SqlDataManager__Connection__TrustServerCertificate: "true"
+      Modules__SqlDataManager__ObjectAccess__AllowedSchemas__0: "dbo"
+      Modules__SqlDataManager__ObjectAccess__AllowedSchemas__1: "sales"
+      Modules__SqlDataManager__ObjectAccess__AllowedSchemas__2: "reporting"
+    ports:
+      - "8080:8080"
+    volumes:
+      - settings-data:/app/AppData
+
+volumes:
+  mssql-data:
+  settings-data:
