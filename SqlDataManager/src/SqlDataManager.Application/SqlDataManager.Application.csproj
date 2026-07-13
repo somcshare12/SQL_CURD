@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    The Application project holds the use-case orchestration: it validates
+    requests, enforces access rules, coordinates transactions and calls the
+    repository abstractions that Infrastructure implements. It depends on Domain
+    (core concepts) and Contracts (wire DTOs + mapping), plus the abstractions
+    packages needed for options, logging and DI — but never on a concrete data
+    provider such as Microsoft.Data.SqlClient.
+  -->
+  <PropertyGroup>
+    <RootNamespace>SqlDataManager.Application</RootNamespace>
+    <AssemblyName>SqlDataManager.Application</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SqlDataManager.Domain\SqlDataManager.Domain.csproj" />
+    <ProjectReference Include="..\SqlDataManager.Contracts\SqlDataManager.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.0" />
+  </ItemGroup>
+
+</Project>

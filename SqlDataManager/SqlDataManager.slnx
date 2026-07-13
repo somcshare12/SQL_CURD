@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/SqlDataManager.Api/SqlDataManager.Api.csproj" />
+    <Project Path="src/SqlDataManager.Application/SqlDataManager.Application.csproj" />
+    <Project Path="src/SqlDataManager.Contracts/SqlDataManager.Contracts.csproj" />
+    <Project Path="src/SqlDataManager.Domain/SqlDataManager.Domain.csproj" />
+    <Project Path="src/SqlDataManager.Infrastructure/SqlDataManager.Infrastructure.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    The Domain project is the innermost layer of the module. It contains only
+    plain C# types that describe the *concepts* of the feature (database
+    objects, columns, keys, filters, sorts, permissions, etc.).
+
+    It intentionally has NO package references and NO project references so that
+    it can never accidentally depend on ASP.NET Core, SQL Server client
+    libraries, JSON libraries, or the frontend. This keeps the core rules
+    portable and trivially unit-testable.
+  -->
+  <PropertyGroup>
+    <RootNamespace>SqlDataManager.Domain</RootNamespace>
+    <AssemblyName>SqlDataManager.Domain</AssemblyName>
+  </PropertyGroup>
+
+</Project>
