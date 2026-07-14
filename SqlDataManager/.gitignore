@@ -1,0 +1,30 @@
+# ---- .NET ----
+bin/
+obj/
+*.user
+*.suo
+.vs/
+artifacts/
+AppData/
+
+# ---- Node / frontend ----
+node_modules/
+dist/
+dist-ssr/
+*.local
+.vite/
+coverage/
+playwright-report/
+test-results/
+blob-report/
+.playwright/
+
+# ---- Editor ----
+.idea/
+*.swp
+.DS_Store
+
+# ---- Secrets ----
+appsettings.*.Local.json
+*.env
+.env

@@ -1,0 +1,11 @@
+**/bin
+**/obj
+**/node_modules
+**/dist
+**/wwwroot
+**/AppData
+**/.vs
+**/.idea
+**/test-results
+**/playwright-report
+tests/

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    The Contracts project holds the public request/response DTOs that travel
+    over HTTP. They are shared between the API endpoints and the test projects
+    so that tests exercise the exact same shapes clients see. It references only
+    the Domain project (for shared enums) to avoid duplicating vocabulary.
+  -->
+  <PropertyGroup>
+    <RootNamespace>SqlDataManager.Contracts</RootNamespace>
+    <AssemblyName>SqlDataManager.Contracts</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SqlDataManager.Domain\SqlDataManager.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

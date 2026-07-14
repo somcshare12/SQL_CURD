@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    The Infrastructure project is the only place that talks to SQL Server. It
+    implements the Application abstractions (metadata catalog, row repository,
+    mutation repository, settings store, connectivity) using
+    Microsoft.Data.SqlClient. It references Application (to implement its
+    interfaces) and Domain, but nothing above it knows these implementation
+    details exist.
+  -->
+  <PropertyGroup>
+    <RootNamespace>SqlDataManager.Infrastructure</RootNamespace>
+    <AssemblyName>SqlDataManager.Infrastructure</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SqlDataManager.Domain\SqlDataManager.Domain.csproj" />
+    <ProjectReference Include="..\SqlDataManager.Application\SqlDataManager.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.4" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="10.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="10.0.0" />
+  </ItemGroup>
+
+</Project>

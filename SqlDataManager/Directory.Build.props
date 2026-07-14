@@ -1,0 +1,31 @@
+<Project>
+  <!--
+    Directory.Build.props is automatically imported by MSBuild for every project
+    beneath this folder. Centralising the common settings here keeps every
+    csproj file small and guarantees consistent compiler behaviour across the
+    whole solution (a key requirement of the build specification: strict
+    nullable-reference-type safety and modern language features everywhere).
+  -->
+  <PropertyGroup>
+    <!-- All backend projects target .NET 10. -->
+    <TargetFramework>net10.0</TargetFramework>
+
+    <!-- Modern C# with nullable reference types turned on everywhere. -->
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <!-- Treat warnings seriously; production code should stay clean. -->
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <AnalysisLevel>latest</AnalysisLevel>
+    <EnforceCodeStyleInBuild>false</EnforceCodeStyleInBuild>
+
+    <!-- Deterministic, reproducible builds. -->
+    <Deterministic>true</Deterministic>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+
+    <!-- Product identity, kept in one place so it is easy to re-brand. -->
+    <Product>SQL Data Manager</Product>
+    <Company>SQL Data Manager Module</Company>
+  </PropertyGroup>
+</Project>
